@@ -1,0 +1,16 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>千分位转换为原始值</title>
+</head>
+<body>
+<p>Formatted Value: 1,234,567.89</p>
+<p>Original Value: <span id="originalValue"></span></p>
+<script>
+    let formattedValue = '1,234,567.89';
+    let originalValue = parseFloat(formattedValue.replace(/,/g, ''));
+    document.getElementById('originalValue').innerHTML = originalValue;
+</script>
+</body>
+</html>
