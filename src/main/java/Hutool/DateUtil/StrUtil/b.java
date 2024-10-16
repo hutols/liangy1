@@ -1,6 +1,9 @@
 package Hutool.DateUtil.StrUtil;
 
 import cn.hutool.core.util.HexUtil;
+import cn.hutool.core.util.StrUtil;
+
+import java.util.Collections;
 
 /**
  * @author LY
@@ -10,12 +13,14 @@ import cn.hutool.core.util.HexUtil;
 
 public class b {
     public static void main(String[] args) {
-        //16进制
-        String a="你好世界";
-        String s = HexUtil.encodeHexStr(a);
-        System.out.println(s);
-        String s1 = HexUtil.decodeHexStr("e4bda0e5a4bde4b896e7958c");
-        System.out.println(s1);
+        String format = StrUtil.format("{:0>4}", 1);
+        System.out.println(format);
+        for (int i = 1; i <= 9999; i++) {
+            // 使用Hutool的StrUtil.format方法格式化数字，补零到4位
+            String formattedNumber = StrUtil.fillBefore(String.valueOf(i), '0', 4);
+            System.out.println(formattedNumber);
+            Collections.emptyList();
+        }
     }
 }
 

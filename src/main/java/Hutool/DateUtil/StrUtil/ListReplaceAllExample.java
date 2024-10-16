@@ -32,7 +32,5 @@ public class ListReplaceAllExample {
             MailUtil.send(account, "1912752320@qq.com", "爱你", "宝子，哥哥爱你", false);
             System.out.println("成功");
         }
-
-
     }
 }
