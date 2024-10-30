@@ -1,19 +1,22 @@
 package Test;
 
-import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.IdcardUtil;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.read.listener.PageReadListener;
-import lombok.Data;
 import model.DataEntry;
+import model.clas;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static cn.hutool.core.util.ReUtil.*;
 
 /**
  * @author LY
@@ -33,7 +36,11 @@ public class demo1 {
         ArrayList<clas> list = new ArrayList<>();
         EasyExcel.read(file, clas.class, new PageReadListener<clas>(list::addAll
         )).sheet().doRead();
-        System.out.println(list);
+        for (int i = 0; i < list.size(); i++) {
+            clas clas = list.get(i);
+            System.out.println(Convert.toLong(clas.getFileName()));
+        }
+        //System.out.println(list);
     }
 
 
@@ -61,8 +68,8 @@ public class demo1 {
     @Test
     public void d() {
         Set<String> set = new HashSet<>();
-        String a="9,1,2,,3,,,4,,,,5";
-        set=  Arrays.stream(a.split(",")).filter(StrUtil::isNotBlank).collect(Collectors.toSet());
+        String a = "9,1,2,,3,,,4,,,,5";
+        set = Arrays.stream(a.split(",")).filter(StrUtil::isNotBlank).collect(Collectors.toSet());
         System.out.println(set);
     }
 
@@ -84,6 +91,36 @@ public class demo1 {
 
         // 输出结果
         resultList.forEach(System.out::println);
+    }
+
+
+    /*
+ 判断是否纯数字，提前纯数字
+  */
+    @Test
+    public void f() {
+        String a = "\uF06C 8001465336";
+        boolean number = Validator.isNumber(a);
+        if (number) {
+            System.out.println("是");
+        } else {
+            System.out.println("不是");
+        }
+        String reduce = findAll("\\d+", a, 0).stream().reduce("", String::concat);
+        System.out.println(reduce);
+
+    }
+
+    /*
+判断是否纯数字，提前纯数字
+*/
+    @Test
+    public void g() {
+        String a = "undefined";
+        if (StrUtil.isNotBlank(a)) {
+            System.out.println(a);
+
+        }
     }
 
 }
